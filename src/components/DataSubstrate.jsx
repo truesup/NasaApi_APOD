@@ -1,10 +1,16 @@
 import { useContext } from 'react'
+import { FaAngleLeft } from 'react-icons/fa6'
 import { NasaContext } from '../context/NasaContext'
 import { months } from '../utils/monthsObject.js'
 import styles from './DataSubstrate.module.css'
 
 const DataSubstrate = () => {
-  const { nasaData } = useContext(NasaContext)
+  const { nasaData, setIsDataShown, setChosenDate } = useContext(NasaContext)
+
+  const handleGoBack = () => {
+    setIsDataShown(false)
+    setChosenDate('')
+  }
 
   if (!nasaData) {
     return <></>
@@ -15,6 +21,9 @@ const DataSubstrate = () => {
 
   return (
     <div className={styles.dataSubstrate}>
+      <button className={styles.goBackButton} onClick={handleGoBack}>
+        <FaAngleLeft />
+      </button>
       <p className={styles.dataTitle}>{nasaData.title}</p>
       <p className={styles.dataChosenDate}>
         Day: <span className={styles.dataSpan}>{formattedDate[2]}</span> |
@@ -38,6 +47,7 @@ const DataSubstrate = () => {
       ) : (
         <p className={styles.dataError}>Media not available</p>
       )}
+      <button className={styles.descriptionButton}>Show description</button>
     </div>
   )
 }

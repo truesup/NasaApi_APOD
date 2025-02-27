@@ -13,7 +13,6 @@ const MainSubstrate = () => {
   } = useContext(NasaContext)
 
   const handleGetData = async () => {
-    console.log('Button clicked!')
     if (!chosenDate) {
       toast('Enter a date :)')
       return
