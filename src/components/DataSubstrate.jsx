@@ -4,7 +4,7 @@ import { NasaContext } from '../context/NasaContext'
 import { months } from '../utils/monthsObject.js'
 import styles from './DataSubstrate.module.css'
 
-const DataSubstrate = () => {
+const DataSubstrate = ({ className }) => {
   const { nasaData, setIsDataShown, setChosenDate } = useContext(NasaContext)
 
   const handleGoBack = () => {
@@ -20,7 +20,7 @@ const DataSubstrate = () => {
   const month = months[formattedDate[1]?.padStart(2, '0')] || 'Unknown'
 
   return (
-    <div className={styles.dataSubstrate}>
+    <div className={`${styles.dataSubstrate} ${className}`}>
       <button className={styles.goBackButton} onClick={handleGoBack}>
         <FaAngleLeft />
       </button>

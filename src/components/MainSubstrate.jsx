@@ -3,7 +3,7 @@ import styles from './MainSubstrate.module.css'
 import { NasaContext } from '../context/NasaContext'
 import { toast } from 'react-toastify'
 
-const MainSubstrate = () => {
+const MainSubstrate = ({ className }) => {
   const {
     chosenDate,
     handleInputChange,
@@ -23,7 +23,7 @@ const MainSubstrate = () => {
   }
 
   return (
-    <div className={styles.mainSubstrate}>
+    <div className={`${styles.mainSubstrate} ${className}`}>
       <p className={styles.mainText}>
         Right now, this app can only find a space photo/video taken on a
         specific date and display it for you.
