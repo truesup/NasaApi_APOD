@@ -7,7 +7,6 @@ const MainSubstrate = () => {
   const {
     chosenDate,
     handleInputChange,
-    nasaData,
     getDataFromApi,
     isLoading,
     setIsLoading,
@@ -23,10 +22,6 @@ const MainSubstrate = () => {
     await getDataFromApi()
     setIsLoading(false)
   }
-
-  useEffect(() => {
-    console.log(nasaData)
-  }, [nasaData])
 
   return (
     <div className={styles.mainSubstrate}>
@@ -46,8 +41,7 @@ const MainSubstrate = () => {
         className={styles.mainButton}
         type="button"
         onClick={handleGetData}
-        // disabled={!chosenDate || isLoading}
-      >
+        disabled={isLoading}>
         {isLoading ? 'Loading...' : "Let's see!"}
       </button>
     </div>

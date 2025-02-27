@@ -67,6 +67,7 @@ html {
 body {
   width: 100dvw;
   height: 100dvh;
+  padding: 40px;
   background: url(../public/bg-img.jpg);
   background-size: cover;
   background-position: center;
