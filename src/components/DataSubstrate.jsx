@@ -32,7 +32,7 @@ const DataSubstrate = ({ className }) => {
       </p>
       {nasaData.media_type === 'image' && nasaData.url ? (
         <img
-          className={styles.media}
+          className={`${styles.media} ${styles.photo}`}
           src={nasaData.url}
           alt="Nasa image from chosen date"
         />

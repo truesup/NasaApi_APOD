@@ -65,3 +65,9 @@ iframe {
   color: var(--color-blue);
   scale: 1.01;
 }
+.descriptionText {
+  width: 560px;
+  font-size: 16px;
+  font-weight: 400;
+  text-align: center;
+}
