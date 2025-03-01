@@ -7,6 +7,7 @@ import styles from './DataSubstrate.module.css'
 const DataSubstrate = ({ className }) => {
   const { nasaData, setIsDataShown, setChosenDate } = useContext(NasaContext)
   const [isFullscreen, setIsFullscreen] = useState(false)
+  const [isDescriptionShown, setIsDescriptionShown] = useState(false)
 
   const handleGoBack = () => {
     setIsDataShown(false)
@@ -17,8 +18,12 @@ const DataSubstrate = ({ className }) => {
     setIsFullscreen(true)
   }
 
+  const handleDescriptionToggle = () => {
+    setIsDescriptionShown(true)
+  }
+
   if (!nasaData) {
-    return <></>
+    return null
   }
 
   const formattedDate = nasaData?.date?.split('-') ?? []
@@ -67,7 +72,27 @@ const DataSubstrate = ({ className }) => {
           />
         </div>
       )}
-      <button className={styles.descriptionButton}>Show description</button>
+      <button
+        className={styles.descriptionButton}
+        onClick={handleDescriptionToggle}>
+        Show description
+      </button>
+      {isDescriptionShown && (
+        <div
+          className={styles.modalOverlay}
+          onClick={() => setIsDescriptionShown(false)}>
+          <div
+            className={styles.modalContent}
+            onClick={e => e.stopPropagation()}>
+            <p className={styles.modalText}>{nasaData.explanation}</p>
+            <button
+              className={styles.closeModalButton}
+              onClick={() => setIsDescriptionShown(false)}>
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
