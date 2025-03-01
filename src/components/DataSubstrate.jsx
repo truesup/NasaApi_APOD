@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { FaAngleLeft } from 'react-icons/fa6'
 import { NasaContext } from '../context/NasaContext'
 import { months } from '../utils/monthsObject.js'
@@ -6,10 +6,15 @@ import styles from './DataSubstrate.module.css'
 
 const DataSubstrate = ({ className }) => {
   const { nasaData, setIsDataShown, setChosenDate } = useContext(NasaContext)
+  const [isFullscreen, setIsFullscreen] = useState(false)
 
   const handleGoBack = () => {
     setIsDataShown(false)
     setChosenDate('')
+  }
+
+  const handleImageClick = () => {
+    setIsFullscreen(true)
   }
 
   if (!nasaData) {
@@ -31,11 +36,15 @@ const DataSubstrate = ({ className }) => {
         <span className={styles.dataSpan}>{formattedDate[0]}</span>
       </p>
       {nasaData.media_type === 'image' && nasaData.url ? (
-        <img
-          className={`${styles.media} ${styles.photo}`}
-          src={nasaData.url}
-          alt="Nasa image from chosen date"
-        />
+        <>
+          <img
+            className={`${styles.media} ${styles.photo}`}
+            src={nasaData.url}
+            alt="Nasa image from chosen date"
+            onClick={handleImageClick}
+          />
+          <p>Click the image to see it fullscreen</p>
+        </>
       ) : nasaData.media_type === 'video' && nasaData.url ? (
         <iframe
           width="560"
@@ -46,6 +55,17 @@ const DataSubstrate = ({ className }) => {
           allowFullScreen></iframe>
       ) : (
         <p className={styles.dataError}>Media not available</p>
+      )}
+      {isFullscreen && (
+        <div
+          className={styles.fullscreenOverlay}
+          onClick={() => setIsFullscreen(false)}>
+          <img
+            src={nasaData.url}
+            alt="Fullscreen view"
+            className={styles.fullscreenImage}
+          />
+        </div>
       )}
       <button className={styles.descriptionButton}>Show description</button>
     </div>
