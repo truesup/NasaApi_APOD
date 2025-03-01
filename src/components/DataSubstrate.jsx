@@ -88,7 +88,7 @@ const DataSubstrate = ({ className }) => {
             <button
               className={styles.closeModalButton}
               onClick={() => setIsDescriptionShown(false)}>
-              Close
+              <FaAngleLeft />
             </button>
           </div>
         </div>

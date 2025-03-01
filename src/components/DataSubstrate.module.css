@@ -102,12 +102,13 @@ iframe {
 }
 .modalContent {
   background-color: var(--color-light);
-  padding: 24px;
+  padding: 24px 40px;
   border-radius: 8px;
   max-width: 600px;
   max-height: 80%;
   overflow-y: auto;
   box-shadow: 4px 8px 10px rgba(0, 0, 0, 0.3);
+  text-align: center;
   position: relative;
 }
 .modalText {
@@ -116,16 +117,11 @@ iframe {
 }
 .closeModalButton {
   position: absolute;
-  top: 12px;
-  right: 12px;
-  background: var(--color-blue);
-  color: var(--color-light);
+  top: 20px;
+  left: 4px;
   border: none;
   padding: 6px 12px;
   border-radius: 4px;
   cursor: pointer;
   transition: background 0.3s ease;
-}
-.closeModalButton:hover {
-  background: darkblue;
 }
